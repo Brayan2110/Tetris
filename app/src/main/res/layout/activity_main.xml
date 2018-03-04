@@ -7,13 +7,947 @@
     android:layout_height="match_parent"
     tools:context="com.example.bvarg.tetris.MainActivity">
 
-    <GridLayout
-        android:id="@+id/gridlayouth"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    <RelativeLayout
+        android:layout_width="360dp"
+        android:layout_height="414dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="7dp">
 
-    </GridLayout>
+        <GridLayout
+            android:id="@+id/layoutTablero"
+            android:layout_width="353dp"
+            android:layout_height="386dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/background_dark"
+            android:columnCount="11"
+            android:rowCount="12">
+
+            <ImageView
+                android:id="@+id/imageView00"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView01"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView02"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView03"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView04"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView05"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView06"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView07"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView08"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView09"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView0a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView1a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView20"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView21"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView22"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView23"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView24"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView25"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView26"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView27"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView28"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView29"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView2a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView31"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView32"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView34"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView35"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView36"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView37"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView38"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView39"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView3a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView40"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView41"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView42"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView43"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView44"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView45"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView46"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView47"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView48"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView49"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView4a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView50"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView51"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView52"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView53"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView54"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView55"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView56"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView57"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView58"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView59"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView5a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView60"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView61"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView62"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView63"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView64"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView65"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView66"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView67"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView68"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView69"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView6a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView70"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView71"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView72"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView73"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView74"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView75"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView76"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView77"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView78"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView79"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView7a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView80"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView81"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView82"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView83"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView84"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView85"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView86"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView87"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView88"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView89"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView8a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView90"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView91"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView92"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView93"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView94"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView95"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView96"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView97"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView98"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView99"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageView9a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa0"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewa9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewaa"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb0"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewb9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+            <ImageView
+                android:id="@+id/imageViewba"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="1dp"
+                app:srcCompat="@android:color/background_light" />
+
+        </GridLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
