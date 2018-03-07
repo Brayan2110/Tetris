@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     //5 escalera izquierda
     //6 escalera centro
     int pieza;
+    boolean juegoactivo = true;
     //0 amarillo
     //1 azul
     //2 celeste
@@ -35,42 +37,32 @@ public class MainActivity extends AppCompatActivity {
     //5 rojo
     //6 verde
     int color;
-
+    int velocidad = 1000;
     boolean primero = true;
-    Button izquierda;
-    Button derecha;
-    Button girar;
     ArrayList colores = new ArrayList();
     ArrayList afectados = new ArrayList();
     Handler handler = new Handler();
-    int[][] matriz= {{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                     {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}};
+    int[][] matriz;
     ImageView[][] matriz2;
+    Button derecha;
+    Button izquierda;
+    Button abajo;
+    Button girar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        GridLayout grid = (GridLayout) findViewById(R.id.layoutTablero);
-        for (int i = 0; i < grid.getChildCount(); i++){
-            ImageView t = (ImageView) grid.getChildAt(i);
-            t.setImageResource(R.drawable.gris2);
-        }
-        izquierda = (Button) findViewById(R.id.button_izquierda);
-        derecha = (Button) findViewById(R.id.button_derecha);
-        girar = (Button) findViewById(R.id.button_girar);
+        derecha = (Button)findViewById(R.id.button_derecha);
+        izquierda = (Button)findViewById(R.id.button_izquierda);
+        abajo = (Button)findViewById(R.id.button_abajo);
+        girar = (Button)findViewById(R.id.button_girar);
+        colores.add(R.drawable.amarillo);
+        colores.add(R.drawable.azul);
+        colores.add(R.drawable.celeste);
+        colores.add(R.drawable.morado);
+        colores.add(R.drawable.naranja);
+        colores.add(R.drawable.rojo);
+        colores.add(R.drawable.verde);
         matriz2 = new ImageView[][]{{(ImageView)findViewById(R.id.imageView00),(ImageView)findViewById(R.id.imageView01),(ImageView)findViewById(R.id.imageView02),(ImageView)findViewById(R.id.imageView03),(ImageView)findViewById(R.id.imageView04),(ImageView)findViewById(R.id.imageView05),(ImageView)findViewById(R.id.imageView06),(ImageView)findViewById(R.id.imageView07),(ImageView)findViewById(R.id.imageView08),(ImageView)findViewById(R.id.imageView09),(ImageView)findViewById(R.id.imageView0a)},
                 {(ImageView)findViewById(R.id.imageView10),(ImageView)findViewById(R.id.imageView11),(ImageView)findViewById(R.id.imageView12),(ImageView)findViewById(R.id.imageView13),(ImageView)findViewById(R.id.imageView14),(ImageView)findViewById(R.id.imageView15),(ImageView)findViewById(R.id.imageView16),(ImageView)findViewById(R.id.imageView17),(ImageView)findViewById(R.id.imageView18),(ImageView)findViewById(R.id.imageView19),(ImageView)findViewById(R.id.imageView1a)},
                 {(ImageView)findViewById(R.id.imageView20),(ImageView)findViewById(R.id.imageView21),(ImageView)findViewById(R.id.imageView22),(ImageView)findViewById(R.id.imageView23),(ImageView)findViewById(R.id.imageView24),(ImageView)findViewById(R.id.imageView25),(ImageView)findViewById(R.id.imageView26),(ImageView)findViewById(R.id.imageView27),(ImageView)findViewById(R.id.imageView28),(ImageView)findViewById(R.id.imageView29),(ImageView)findViewById(R.id.imageView2a)},
@@ -83,26 +75,182 @@ public class MainActivity extends AppCompatActivity {
                 {(ImageView)findViewById(R.id.imageView90),(ImageView)findViewById(R.id.imageView91),(ImageView)findViewById(R.id.imageView92),(ImageView)findViewById(R.id.imageView93),(ImageView)findViewById(R.id.imageView94),(ImageView)findViewById(R.id.imageView95),(ImageView)findViewById(R.id.imageView96),(ImageView)findViewById(R.id.imageView97),(ImageView)findViewById(R.id.imageView98),(ImageView)findViewById(R.id.imageView99),(ImageView)findViewById(R.id.imageView9a)},
                 {(ImageView)findViewById(R.id.imageViewa0),(ImageView)findViewById(R.id.imageViewa1),(ImageView)findViewById(R.id.imageViewa2),(ImageView)findViewById(R.id.imageViewa3),(ImageView)findViewById(R.id.imageViewa4),(ImageView)findViewById(R.id.imageViewa5),(ImageView)findViewById(R.id.imageViewa6),(ImageView)findViewById(R.id.imageViewa7),(ImageView)findViewById(R.id.imageViewa8),(ImageView)findViewById(R.id.imageViewa9),(ImageView)findViewById(R.id.imageViewaa)},
                 {(ImageView)findViewById(R.id.imageViewb0),(ImageView)findViewById(R.id.imageViewb1),(ImageView)findViewById(R.id.imageViewb2),(ImageView)findViewById(R.id.imageViewb3),(ImageView)findViewById(R.id.imageViewb4),(ImageView)findViewById(R.id.imageViewb5),(ImageView)findViewById(R.id.imageViewb6),(ImageView)findViewById(R.id.imageViewb7),(ImageView)findViewById(R.id.imageViewb8),(ImageView)findViewById(R.id.imageViewb9),(ImageView)findViewById(R.id.imageViewba)}};
+        jugar();
+
+
+    }
+    public  void reinicio(View view){
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout2);
+        relativeLayout.setVisibility(View.INVISIBLE);
+        jugar();
+
+    }
+    public void pausa(View view){
+        if(juegoactivo){
+            juegoactivo = false;
+            derecha.setClickable(false);
+            izquierda.setClickable(false);
+            abajo.setClickable(false);
+            girar.setClickable(false);
+        }
+        else{
+            juegoactivo = true;
+            derecha.setClickable(true);
+            izquierda.setClickable(true);
+            abajo.setClickable(true);
+            girar.setClickable(true);
+        }
+    }
+    public void jugar(){
+        matriz= new int[][]{{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}};
+        GridLayout grid = (GridLayout) findViewById(R.id.layoutTablero);
+        for (int i = 0; i < grid.getChildCount(); i++){
+            ImageView t = (ImageView) grid.getChildAt(i);
+            t.setImageResource(R.drawable.gris2);
+        }
         azar();
         MiThread x = new MiThread();
-        colores.add(R.drawable.amarillo);
-        colores.add(R.drawable.azul);
-        colores.add(R.drawable.celeste);
-        colores.add(R.drawable.morado);
-        colores.add(R.drawable.naranja);
-        colores.add(R.drawable.rojo);
-        colores.add(R.drawable.verde);
-
-       handler.post(x);
-
+        handler.post(x);
     }
-
     public void izquierda(View view){
+        int i=0;
+        int y=0;
+        int x=0;
+        boolean jugar = true;
+        while (i<8){
+            y = (int)afectados.get(i);
+            x = (int)afectados.get(i+1);
+            i=i+2;
+            if(x==0 || matriz[y][x-1] == 0 || matriz[y][x-1] == 1 || matriz[y][x-1] == 2 || matriz[y][x-1] == 3 || matriz[y][x-1] == 4 || matriz[y][x-1] == 5 || matriz[y][x-1] == 6){
+                jugar = false;
+            }
+        }
+        if(jugar){
+            ArrayList afectados2 = new ArrayList();
+            int varX = 1;
+            while (varX<11){
+                int varXX = 1;
+                while (varXX<8){
+                    if (afectados.get(varXX).equals(varX)){
+                        afectados2.add(afectados.get(varXX-1));
+                        afectados2.add(afectados.get(varXX));
+                    }
+                    varXX= varXX +2;
+                }
+                varX++;
+            }
+            i=0;
+            y=0;
+            x=0;
+            while (i<8){
+                y = (int)afectados2.get(i);
+                x = (int)afectados2.get(i+1);
+                matriz[y][x] = -1;
+                matriz[y][x-1] = 7;
+                afectados2.set(i+1,(int)afectados2.get(i+1)-1);
+                i=i+2;
+                if(y>2){
+                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                    matriz2[y-3][x-1].setImageResource((int)colores.get(color));
+                }
+            }
+            varX = 14;
+            afectados.clear();
+            while (varX!=-1){
+                int varXX = 0;
+                while (varXX<8){
+                    if (afectados2.get(varXX).equals(varX)){
+                        afectados.add(afectados2.get(varXX));
+                        afectados.add(afectados2.get(varXX+1));
+                    }
+                    varXX= varXX +2;
+                }
+                varX--;
+            }
+        }
+        else{
 
+        }
     }
 
+    public void abajo(View view){
+        velocidad = 0;
+    }
     public  void derecha(View view){
+        int i=0;
+        int y=0;
+        int x=0;
+        boolean jugar = true;
+        while (i<8){
+            y = (int)afectados.get(i);
+            x = (int)afectados.get(i+1);
+            i=i+2;
+            if(x==10 || matriz[y][x+1] == 0 || matriz[y][x+1] == 1 || matriz[y][x+1] == 2 || matriz[y][x+1] == 3 || matriz[y][x+1] == 4 || matriz[y][x+1] == 5 || matriz[y][x+1] == 6){
+                jugar = false;
+            }
+        }
+        if(jugar){
+            ArrayList afectados2 = new ArrayList();
+            int varX = 9;
+            while (varX!=-1){
+                int varXX = 1;
+                while (varXX<8){
+                    if (afectados.get(varXX).equals(varX)){
+                        afectados2.add(afectados.get(varXX-1));
+                        afectados2.add(afectados.get(varXX));
+                    }
+                    varXX= varXX +2;
+                }
+                varX--;
+            }
+            i=0;
+            y=0;
+            x=0;
+            while (i<8){
+                y = (int)afectados2.get(i);
+                x = (int)afectados2.get(i+1);
+                matriz[y][x] = -1;
+                matriz[y][x+1] = 7;
+                afectados2.set(i+1,(int)afectados2.get(i+1)+1);
+                i=i+2;
+                if(y>2){
+                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                    matriz2[y-3][x+1].setImageResource((int)colores.get(color));
+                }
+            }
+            Log.d("arreglo",afectados2.toString());
+            varX = 14;
+            afectados.clear();
+            while (varX!=-1){
+                int varXX = 0;
+                Log.d("arreglo2",afectados.toString());
+                while (varXX<8){
+                    if (afectados2.get(varXX).equals(varX)){
+                        afectados.add(afectados2.get(varXX));
+                        afectados.add(afectados2.get(varXX+1));
+                    }
+                    varXX= varXX +2;
+                }
+                varX--;
+            }
+        }
+        else{
 
+        }
     }
 
     public void azar() {
@@ -113,166 +261,187 @@ public class MainActivity extends AppCompatActivity {
     class MiThread implements Runnable {
         @Override
         public void run() {
-            if(primero){
-                switch (pieza){
-                    case 0:
-                        if(matriz[3][4] == -1 && matriz[3][5] == -1){
-                            matriz[2][4]= 7;
-                            matriz[2][5]= 7;
-                            matriz[3][4]= 7;
-                            matriz[3][5]= 7;
-                            matriz2[0][4].setImageResource((int)colores.get(color));
-                            matriz2[0][5].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(4);
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(2);
-                            afectados.add(4);
-                            afectados.add(2);
-                            afectados.add(5);
-                        }
-                        else{
-
-                        }
-                        break;
-                    case 1:
-                        if(matriz[3][5] == -1){
-                            matriz[0][5]= 7;
-                            matriz[1][5]= 7;
-                            matriz[2][5]= 7;
-                            matriz[3][5]= 7;
-                            matriz2[0][5].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(2);
-                            afectados.add(5);
-                            afectados.add(1);
-                            afectados.add(5);
-                            afectados.add(0);
-                            afectados.add(5);
-                        }
-                        else{
-
-                        }
-                        break;
-                    case 2:
-                        if(matriz[3][4] == -1 && matriz[3][5] == -1){
-                            matriz[1][4]= 7;
-                            matriz[2][4]= 7;
-                            matriz[3][4]= 7;
-                            matriz[3][5]= 7;
-                            matriz2[0][4].setImageResource((int)colores.get(color));
-                            matriz2[0][5].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(4);
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(2);
-                            afectados.add(4);
-                            afectados.add(1);
-                            afectados.add(4);
-                        }
-                        else{
-
-                        }
-                        break;
-                    case 3:
-                        if(matriz[3][5] == -1 && matriz[3][4] == -1){
-                            matriz[1][5]= 7;
-                            matriz[2][5]= 7;
-                            matriz[3][5]= 7;
-                            matriz[3][4]= 7;
-                            matriz2[0][4].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(3);
-                            afectados.add(4);
-                            afectados.add(2);
-                            afectados.add(5);
-                            afectados.add(1);
-                            afectados.add(5);
-                        }
-                        else{
-
-                        }
-                        break;
-                    case 4:
-                        if(matriz[3][4] == -1 && matriz[3][5] == -1){
-                            matriz[3][4]= 7;
-                            matriz[3][5]= 7;
-                            matriz[2][5]= 7;
-                            matriz[2][6]= 7;
-                            matriz2[0][4].setImageResource((int)colores.get(color));
-                            matriz2[0][5].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(4);
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(2);
-                            afectados.add(5);
-                            afectados.add(2);
-                            afectados.add(6);
-                        }
-                        else{
-
-                        }
-                        break;
-                    case 5:
-                        if(matriz[3][5] == -1 && matriz[3][6] == -1){
-                            matriz[2][4]= 7;
-                            matriz[2][5]= 7;
-                            matriz[3][5]= 7;
-                            matriz[3][6]= 7;
-                            matriz2[0][5].setImageResource((int)colores.get(color));
-                            matriz2[0][6].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(3);
-                            afectados.add(6);
-                            afectados.add(2);
-                            afectados.add(4);
-                            afectados.add(2);
-                            afectados.add(5);
-                        }
-                        else{
-
-                        }
-                        break;
-                    case 6:
-                        if(matriz[3][4] == -1 && matriz[3][5] == -1 && matriz[3][6] == -1){
-                            matriz[3][4]= 7;
-                            matriz[2][5]= 7;
-                            matriz[3][5]= 7;
-                            matriz[3][6]= 7;
-                            matriz2[0][4].setImageResource((int)colores.get(color));
-                            matriz2[0][5].setImageResource((int)colores.get(color));
-                            matriz2[0][6].setImageResource((int)colores.get(color));
-                            afectados.clear();
-                            afectados.add(3);
-                            afectados.add(4);
-                            afectados.add(3);
-                            afectados.add(5);
-                            afectados.add(3);
-                            afectados.add(6);
-                            afectados.add(2);
-                            afectados.add(5);
-                        }
-                        else{
-
-                        }
-                        break;
-                }
-                primero = false;
-                handler.postDelayed(this,1000);
+            if(!juegoactivo){
+                handler.postDelayed(this,velocidad);
             }
             else{
+                if(primero){
+                    boolean seguir = true;
+                    int n = 0;
+                    while(n<10){
+                        if(matriz[2][n] != -1){
+                            seguir = false;
+                        }
+                        n++;
+                    }
+                    if(seguir){
+                        switch (pieza){
+                            case 0:
+                                if(matriz[3][4] == -1 && matriz[3][5] == -1 ){
+                                    matriz[2][4]= 7;
+                                    matriz[2][5]= 7;
+                                    matriz[3][4]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz2[0][4].setImageResource((int)colores.get(color));
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(4);
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(2);
+                                    afectados.add(4);
+                                    afectados.add(2);
+                                    afectados.add(5);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                            case 1:
+                                if(matriz[3][5] == -1){
+                                    matriz[0][5]= 7;
+                                    matriz[1][5]= 7;
+                                    matriz[2][5]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(2);
+                                    afectados.add(5);
+                                    afectados.add(1);
+                                    afectados.add(5);
+                                    afectados.add(0);
+                                    afectados.add(5);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                            case 2:
+                                if(matriz[3][4] == -1 && matriz[3][5] == -1){
+                                    matriz[1][4]= 7;
+                                    matriz[2][4]= 7;
+                                    matriz[3][4]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz2[0][4].setImageResource((int)colores.get(color));
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(4);
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(2);
+                                    afectados.add(4);
+                                    afectados.add(1);
+                                    afectados.add(4);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                            case 3:
+                                if(matriz[3][5] == -1 && matriz[3][4] == -1){
+                                    matriz[1][5]= 7;
+                                    matriz[2][5]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz[3][4]= 7;
+                                    matriz2[0][4].setImageResource((int)colores.get(color));
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(3);
+                                    afectados.add(4);
+                                    afectados.add(2);
+                                    afectados.add(5);
+                                    afectados.add(1);
+                                    afectados.add(5);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                            case 4:
+                                if(matriz[3][4] == -1 && matriz[3][5] == -1){
+                                    matriz[3][4]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz[2][5]= 7;
+                                    matriz[2][6]= 7;
+                                    matriz2[0][4].setImageResource((int)colores.get(color));
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(4);
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(2);
+                                    afectados.add(5);
+                                    afectados.add(2);
+                                    afectados.add(6);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                            case 5:
+                                if(matriz[3][5] == -1 && matriz[3][6] == -1){
+                                    matriz[2][4]= 7;
+                                    matriz[2][5]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz[3][6]= 7;
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    matriz2[0][6].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(3);
+                                    afectados.add(6);
+                                    afectados.add(2);
+                                    afectados.add(4);
+                                    afectados.add(2);
+                                    afectados.add(5);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                            case 6:
+                                if(matriz[3][4] == -1 && matriz[3][5] == -1 && matriz[3][6] == -1){
+                                    matriz[3][4]= 7;
+                                    matriz[2][5]= 7;
+                                    matriz[3][5]= 7;
+                                    matriz[3][6]= 7;
+                                    matriz2[0][4].setImageResource((int)colores.get(color));
+                                    matriz2[0][5].setImageResource((int)colores.get(color));
+                                    matriz2[0][6].setImageResource((int)colores.get(color));
+                                    afectados.clear();
+                                    afectados.add(3);
+                                    afectados.add(4);
+                                    afectados.add(3);
+                                    afectados.add(5);
+                                    afectados.add(3);
+                                    afectados.add(6);
+                                    afectados.add(2);
+                                    afectados.add(5);
+                                }
+                                else{
+                                    seguir = false;
+                                }
+                                break;
+                        }
+                    }
+                    if(seguir){
+                        primero = false;
+                        handler.postDelayed(this,velocidad);
+                    }
+                    else{
+                        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout2);
+                        relativeLayout.setVisibility(View.VISIBLE);
+                    }
+                }
+                else{
                     int i=0;
                     int y=0;
                     int x=0;
@@ -303,9 +472,8 @@ public class MainActivity extends AppCompatActivity {
                             if(y==2){
                                 matriz2[y-2][x].setImageResource((int)colores.get(color));
                             }
-
                         }
-                        handler.postDelayed(this,1000);
+                        handler.postDelayed(this,velocidad);
                     }
                     else{
                         i=0;
@@ -321,10 +489,44 @@ public class MainActivity extends AppCompatActivity {
                         azar();
                         MiThread m = new MiThread();
                         handler.post(m);
+                        velocidad = 1000;
+                        verificarlinea();
                     }
+                }
             }
-
         }
     }
-
+    public void verificarlinea(){
+        int y = 14;
+        while (y!=2){
+            int x = 0;
+            boolean completa = true;
+            while (x != 11){
+                if(matriz[y][x] == -1){
+                    completa = false;
+                }
+                x++;
+            }
+            if(completa){
+                int yy = y-1;
+                while(yy!=2){
+                    int xx = 0;
+                    while (xx != 11){
+                        matriz[yy+1][xx] = matriz[yy][xx];
+                        int col = matriz[yy][xx];
+                        if (col == -1){
+                            matriz2[yy - 2][xx].setImageResource(R.drawable.gris2);
+                        }
+                        else {
+                            matriz2[yy - 2][xx].setImageResource((int) colores.get(col));
+                        }
+                        xx++;
+                    }
+                    yy--;
+                }
+                verificarlinea();
+            }
+            y--;
+        }
+    }
 }
