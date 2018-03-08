@@ -1070,6 +1070,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/girar"
+            android:onClick="rotar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/button15"
             app:layout_constraintTop_toTopOf="parent" />

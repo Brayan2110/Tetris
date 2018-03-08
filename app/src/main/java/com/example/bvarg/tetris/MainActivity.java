@@ -1,22 +1,15 @@
 package com.example.bvarg.tetris;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     //6 verde
     int color;
     int velocidad = 1000;
+    int centroX;
+    int centroY;
+    int pos;
     boolean primero = true;
     ArrayList colores = new ArrayList();
     ArrayList afectados = new ArrayList();
@@ -128,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void izquierda(View view){
         int i=0;
-        int y=0;
-        int x=0;
+        int y;
+        int x;
         boolean jugar = true;
         while (i<8){
             y = (int)afectados.get(i);
@@ -140,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(jugar){
+            centroX--;
             ArrayList afectados2 = new ArrayList();
             int varX = 1;
             while (varX<11){
@@ -154,8 +151,6 @@ public class MainActivity extends AppCompatActivity {
                 varX++;
             }
             i=0;
-            y=0;
-            x=0;
             while (i<8){
                 y = (int)afectados2.get(i);
                 x = (int)afectados2.get(i+1);
@@ -182,9 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 varX--;
             }
         }
-        else{
-
-        }
     }
 
     public void abajo(View view){
@@ -192,8 +184,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public  void derecha(View view){
         int i=0;
-        int y=0;
-        int x=0;
+        int y;
+        int x;
         boolean jugar = true;
         while (i<8){
             y = (int)afectados.get(i);
@@ -204,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(jugar){
+            centroX++;
             ArrayList afectados2 = new ArrayList();
             int varX = 9;
             while (varX!=-1){
@@ -218,8 +211,6 @@ public class MainActivity extends AppCompatActivity {
                 varX--;
             }
             i=0;
-            y=0;
-            x=0;
             while (i<8){
                 y = (int)afectados2.get(i);
                 x = (int)afectados2.get(i+1);
@@ -232,12 +223,10 @@ public class MainActivity extends AppCompatActivity {
                     matriz2[y-3][x+1].setImageResource((int)colores.get(color));
                 }
             }
-            Log.d("arreglo",afectados2.toString());
             varX = 14;
             afectados.clear();
             while (varX!=-1){
                 int varXX = 0;
-                Log.d("arreglo2",afectados.toString());
                 while (varXX<8){
                     if (afectados2.get(varXX).equals(varX)){
                         afectados.add(afectados2.get(varXX));
@@ -248,8 +237,811 @@ public class MainActivity extends AppCompatActivity {
                 varX--;
             }
         }
-        else{
+    }
 
+    public void rotar(View view){
+        switch (pieza) {
+            case 0:
+                break;
+            case 1:
+                switch (pos){
+                    case 0:
+                        if(centroX == 9 && matriz[centroY][centroX-1]== -1 && matriz[centroY][centroX-2]== -1 && matriz[centroY][centroX+1]== -1){
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX] = -1;
+                            matriz[centroY-2][centroX] = -1;
+                            matriz[centroY+1][centroX] = -1;
+                            matriz[centroY][centroX-1] = 7;
+                            matriz[centroY][centroX+1] = 7;
+                            matriz[centroY][centroX-2] = 7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY);
+                            afectados.add(centroX-2);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos++;
+                            pos++;
+                        }
+                        else if (centroX != 0 && centroX != 10 && matriz[centroY][centroX-1] == -1 && matriz[centroY+1][centroX+1] == -1 && matriz[centroY+1][centroX+2] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX] = -1;
+                            matriz[centroY-2][centroX] = -1;
+                            matriz[centroY+1][centroX] = -1;
+                            matriz[centroY][centroX-1] = 7;
+                            matriz[centroY][centroX+1] = 7;
+                            matriz[centroY][centroX+2] = 7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY);
+                            afectados.add(centroX+2);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 1:
+                        if (centroY != 14 && matriz[centroY+1][centroX] == -1 && matriz[centroY-1][centroX] == -1 && matriz[centroY-2][centroX] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX-1] = -1;
+                            matriz[centroY][centroX+1] = -1;
+                            matriz[centroY][centroX+2] = -1;
+                            matriz[centroY+1][centroX] = 7;
+                            matriz[centroY-1][centroX] = 7;
+                            matriz[centroY-2][centroX] = 7;
+                            afectados.clear();
+                            afectados.add(centroY-2);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos = 0;
+                        }
+                        break;
+                    case 2:
+                        if (centroY != 14 && matriz[centroY+1][centroX] == -1 && matriz[centroY-1][centroX] == -1 && matriz[centroY-2][centroX] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX-1] = -1;
+                            matriz[centroY][centroX+1] = -1;
+                            matriz[centroY][centroX-2] = -1;
+                            matriz[centroY+1][centroX] = 7;
+                            matriz[centroY-1][centroX] = 7;
+                            matriz[centroY-2][centroX] = 7;
+                            afectados.clear();
+                            afectados.add(centroY-2);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos = 0;
+                        }
+                        break;
+                }
+                break;
+            case 2:
+                switch (pos){
+                    case 0:
+                        if (centroX != 0 && matriz[centroY][centroX-1]== -1 && matriz[centroY+1][centroX-1]== -1 && matriz[centroY][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX]=-1;
+                            matriz[centroY+1][centroX]=-1;
+                            matriz[centroY+1][centroX+1]=-1;
+                            matriz[centroY][centroX-1]=7;
+                            matriz[centroY+1][centroX-1]=7;
+                            matriz[centroY][centroX+1]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 1:
+                        if (matriz[centroY-1][centroX-1]== -1 && matriz[centroY-1][centroX]== -1 && matriz[centroY+1][centroX]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY+1][centroX-1]=-1;
+                            matriz[centroY][centroX-1]=-1;
+                            matriz[centroY][centroX+1]=-1;
+                            matriz[centroY-1][centroX-1]=7;
+                            matriz[centroY-1][centroX]=7;
+                            matriz[centroY+1][centroX]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 2:
+                        if (centroX != 10 && matriz[centroY-1][centroX+1]== -1 && matriz[centroY][centroX-1]== -1 && matriz[centroY][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX-1]=-1;
+                            matriz[centroY-1][centroX]=-1;
+                            matriz[centroY+1][centroX]=-1;
+                            matriz[centroY-1][centroX+1]=7;
+                            matriz[centroY][centroX-1]=7;
+                            matriz[centroY][centroX+1]=7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX+1);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 3:
+                        if (centroY != 14 && matriz[centroY-1][centroX]== -1 && matriz[centroY+1][centroX]== -1 && matriz[centroY+1][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX+1]=-1;
+                            matriz[centroY][centroX-1]=-1;
+                            matriz[centroY][centroX+1]=-1;
+                            matriz[centroY-1][centroX]=7;
+                            matriz[centroY+1][centroX]=7;
+                            matriz[centroY+1][centroX+1]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY+1);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos=0;
+                        }
+                        break;
+                }
+                break;
+            case 3:
+                switch (pos){
+                    case 0:
+                        if (centroX != 10 && matriz[centroY-1][centroX-1]== -1 && matriz[centroY][centroX-1]== -1 && matriz[centroY][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX]=-1;
+                            matriz[centroY+1][centroX]=-1;
+                            matriz[centroY+1][centroX-1]=-1;
+                            matriz[centroY][centroX-1]=7;
+                            matriz[centroY-1][centroX-1]=7;
+                            matriz[centroY][centroX+1]=7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX-1);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 1:
+                        if (centroY != 14 && matriz[centroY-1][centroX]== -1 && matriz[centroY+1][centroX]== -1 && matriz[centroY-1][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX-1]=-1;
+                            matriz[centroY][centroX-1]=-1;
+                            matriz[centroY][centroX+1]=-1;
+                            matriz[centroY-1][centroX+1]=7;
+                            matriz[centroY-1][centroX]=7;
+                            matriz[centroY+1][centroX]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX+1);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 2:
+                        if (centroX != 0 && matriz[centroY][centroX-1]== -1 && matriz[centroY][centroX+1]== -1 && matriz[centroY+1][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX+1]=-1;
+                            matriz[centroY-1][centroX]=-1;
+                            matriz[centroY+1][centroX]=-1;
+                            matriz[centroY+1][centroX+1]=7;
+                            matriz[centroY][centroX-1]=7;
+                            matriz[centroY][centroX+1]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 3:
+                        if (matriz[centroY-1][centroX]== -1 && matriz[centroY+1][centroX]== -1 && matriz[centroY+1][centroX-1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX-1]=-1;
+                            matriz[centroY][centroX+1]=-1;
+                            matriz[centroY+1][centroX+1]=-1;
+                            matriz[centroY-1][centroX]=7;
+                            matriz[centroY+1][centroX]=7;
+                            matriz[centroY+1][centroX-1]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos=0;
+                        }
+                        break;
+                }
+                break;
+            case 4:
+                switch (pos) {
+                    case 0:
+                        if (centroY != 14 && matriz[centroY][centroX+1] == -1 && matriz[centroY+1][centroX+1] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX-1] = -1;
+                            matriz[centroY-1][centroX+1] = -1;
+                            matriz[centroY][centroX+1] = 7;
+                            matriz[centroY+1][centroX+1] = 7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 1:
+                        if (centroX != 10 && matriz[centroY][centroX-1] == -1 && matriz[centroY-1][centroX+1] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX+1] = -1;
+                            matriz[centroY+1][centroX+1] = -1;
+                            matriz[centroY][centroX-1] = 7;
+                            matriz[centroY-1][centroX+1] = 7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX+1);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos = 0;
+                        }
+                        break;
+                }
+                break;
+            case 5:
+                switch (pos){
+                    case 0:
+                        if (centroY != 14 && matriz[centroY][centroX-1] == -1 && matriz[centroY+1][centroX-1] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX-1] = -1;
+                            matriz[centroY][centroX+1] = -1;
+                            matriz[centroY][centroX-1] = 7;
+                            matriz[centroY+1][centroX-1] = 7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 1:
+                        if (centroX != 0 && matriz[centroY][centroX+1] == -1 && matriz[centroY-1][centroX-1] == -1) {
+                            int i = 0;
+                            int y;
+                            int x;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY+1][centroX-1] = -1;
+                            matriz[centroY][centroX-1] = -1;
+                            matriz[centroY][centroX+1] = 7;
+                            matriz[centroY-1][centroX-1] = 7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i = 0;
+                            while (i < 8) {
+                                y = (int) afectados.get(i);
+                                x = (int) afectados.get(i + 1);
+                                i = i + 2;
+                                if (y > 2) {
+                                    matriz2[y - 3][x].setImageResource((int) colores.get(color));
+                                }
+                            }
+                            pos = 0;
+                        }
+                        break;
+                }
+                break;
+            case 6:
+                switch (pos){
+                    case 0:
+                        if (centroY != 14 && matriz[centroY+1][centroX] == -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX-1]=-1;
+                            matriz[centroY+1][centroX]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 1:
+                        if (centroX != 0 && matriz[centroY][centroX-1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY-1][centroX]=-1;
+                            matriz[centroY][centroX-1]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 2:
+                        if (matriz[centroY-1][centroX]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY][centroX+1]=-1;
+                            matriz[centroY-1][centroX]=7;
+                            afectados.clear();
+                            afectados.add(centroY+1);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos++;
+                        }
+                        break;
+                    case 3:
+                        if (centroX != 10 && matriz[centroY][centroX+1]== -1){
+                            int i=0;
+                            int y;
+                            int x;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource(R.drawable.gris2);
+                                }
+                            }
+                            matriz[centroY+1][centroX]=-1;
+                            matriz[centroY][centroX+1]=7;
+                            afectados.clear();
+                            afectados.add(centroY);
+                            afectados.add(centroX-1);
+                            afectados.add(centroY);
+                            afectados.add(centroX);
+                            afectados.add(centroY);
+                            afectados.add(centroX+1);
+                            afectados.add(centroY-1);
+                            afectados.add(centroX);
+                            i=0;
+                            while (i<8){
+                                y = (int)afectados.get(i);
+                                x = (int)afectados.get(i+1);
+                                i=i+2;
+                                if(y>2){
+                                    matriz2[y-3][x].setImageResource((int)colores.get(color));
+                                }
+                            }
+                            pos=0;
+                        }
+                        break;
+                }
+                break;
         }
     }
 
@@ -266,6 +1058,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 if(primero){
+                    pos = 0;
                     boolean seguir = true;
                     int n = 0;
                     while(n<10){
@@ -314,6 +1107,8 @@ public class MainActivity extends AppCompatActivity {
                                     afectados.add(5);
                                     afectados.add(0);
                                     afectados.add(5);
+                                    centroY = 1;
+                                    centroX = 5;
                                 }
                                 else{
                                     seguir = false;
@@ -336,6 +1131,8 @@ public class MainActivity extends AppCompatActivity {
                                     afectados.add(4);
                                     afectados.add(1);
                                     afectados.add(4);
+                                    centroY = 2;
+                                    centroX = 4;
                                 }
                                 else{
                                     seguir = false;
@@ -358,6 +1155,8 @@ public class MainActivity extends AppCompatActivity {
                                     afectados.add(5);
                                     afectados.add(1);
                                     afectados.add(5);
+                                    centroY = 2;
+                                    centroX = 5;
                                 }
                                 else{
                                     seguir = false;
@@ -380,6 +1179,8 @@ public class MainActivity extends AppCompatActivity {
                                     afectados.add(5);
                                     afectados.add(2);
                                     afectados.add(6);
+                                    centroY = 3;
+                                    centroX = 5;
                                 }
                                 else{
                                     seguir = false;
@@ -402,6 +1203,8 @@ public class MainActivity extends AppCompatActivity {
                                     afectados.add(4);
                                     afectados.add(2);
                                     afectados.add(5);
+                                    centroY = 3;
+                                    centroX = 5;
                                 }
                                 else{
                                     seguir = false;
@@ -425,6 +1228,9 @@ public class MainActivity extends AppCompatActivity {
                                     afectados.add(6);
                                     afectados.add(2);
                                     afectados.add(5);
+                                    centroY = 3;
+                                    centroX = 5;
+
                                 }
                                 else{
                                     seguir = false;
@@ -443,8 +1249,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     int i=0;
-                    int y=0;
-                    int x=0;
+                    int y;
+                    int x;
+                    centroY++;
                     boolean jugar = true;
                     while (i<8){
                         y = (int)afectados.get(i);
@@ -456,8 +1263,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(jugar){
                         i=0;
-                        y=0;
-                        x=0;
                         while (i<8){
                             y = (int)afectados.get(i);
                             x = (int)afectados.get(i+1);
@@ -477,8 +1282,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         i=0;
-                        y=0;
-                        x=0;
                         while (i<8){
                             y = (int)afectados.get(i);
                             x = (int)afectados.get(i+1);
